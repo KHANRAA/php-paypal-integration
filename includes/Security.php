@@ -13,11 +13,11 @@ class Security
     function __construct()
     {}
 
-    public static function CSRFtoken() {
+    public static function uniqueToken() {
         $secretKey = "3W7ed3v9m21nQGYoNI9I"; // Any random string
         $sessionId = session_id();
         $randomKey = bin2hex(openssl_random_pseudo_bytes(10));
 
-        return hash('sha256', $secretKey . $sessionId . $randomKey);
+        return hash('sha512', $secretKey . $sessionId . $randomKey);
     }
 }
