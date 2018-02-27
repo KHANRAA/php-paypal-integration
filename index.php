@@ -7,6 +7,7 @@
  */
 
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/Database.php';
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/Session.php';
 require_once __DIR__ . '/includes/Security.php';
@@ -45,6 +46,6 @@ if (! isset($_GET['page'])) {
             break;
         default:
             header('HTTP/1.0 404 Not Found');
-            $load->view('404', $data);
+            $load->view('404');
     }
 }
