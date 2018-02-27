@@ -63,5 +63,11 @@ $paypalClient = new \Paypal\Paypal([
     'item_name' => $item_name,
     'item_number' => $item_number
 ]);
-$paypalClient->buildQuery();
-$paypalClient->redirect();
+
+try {
+    $paypalClient->buildQuery();
+    $paypalClient->initTransaction();
+    $paypalClient->redirect();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
