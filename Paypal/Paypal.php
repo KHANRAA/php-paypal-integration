@@ -73,7 +73,13 @@ class Paypal
         $query = "INSERT INTO payments (cust_fname, cust_lname, cust_email, cust_mobile, tracking_id) VALUES (?, ?, ?, ?, ?)";
         try {
             $stmt = $db->prepare($query);
-            $stmt->bind_param('sssss', $this->data['first_name'], $this->data['last_name'], $this->data['email'], $this->data['mobile'], $this->token);
+            $stmt->bind_param('sssss',
+                $this->data['first_name'],
+                $this->data['last_name'],
+                $this->data['email'],
+                $this->data['mobile'],
+                $this->token
+            );
             $stmt->execute();
         } catch (\mysqli_sql_exception $e) {
             throw new \Exception('Failed to instantiate transaction!');
