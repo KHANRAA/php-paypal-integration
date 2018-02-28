@@ -8,6 +8,8 @@
 
 namespace Paypal;
 
+use Toolani\Payment\Paypal\IpnVerifier;
+
 class Paypal
 {
     private $data;
@@ -91,45 +93,23 @@ class Paypal
     }
 
     /**
-     * Build payment verification query.
-     */
-    public function buildVerificationQuery() {
-        foreach($_POST as $key => $val) {
-            $val = urlencode(stripslashes($val));
-            $val = preg_replace('/(.*[^%^0^D])(%0A)(.*)/i','${1}%0D%0A${3}', $val);
-            $this->verificationQuery .= "&{$key}={$val}";
-        }
-    }
-
-    /**
      * Validate if payment was successful or not.
      *
      * @return bool
      * @throws \Exception
      */
     public function validatePayment() {
-        $header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
-        $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-        $header .= "Content-Length: " . strlen($this->verificationQuery) . "\r\n\r\n";
-
-        $url = ENV === 'development' ? SANDBOX_VERIFIER : LIVE_VERIFIER;
-        $fp = fsockopen ("{$url}", 443, $errno, $errstr, 30);
-
-        if (! $fp) {
-            throw new \Exception('Failed to open connection!');
-        } else {
-            fputs($fp, $header . $this->verificationQuery);
-
-            while (! feof($fp)) {
-                $response = fgets($fp, 1024);
-
-                if (strcmp($response, "VERIFIED") == 0) {
-                    // Return TRUE if payment was successful.
-                    return TRUE;
-                }
-            }
+        $verifier = new IpnVerifier($useSandbox = ENV === 'development' ? TRUE : FALSE);
+        try {
+            $verified = $verifier->verify($this->response);
+        } catch(\Exception $e) {
+            throw new \Exception('Verification failure: ' . $e->getMessage());
         }
-        // Return FALSE in all other cases.
+
+        if ($verified) {
+            return TRUE;
+        }
+
         return FALSE;
     }
 
