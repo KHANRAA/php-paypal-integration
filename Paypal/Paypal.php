@@ -15,8 +15,7 @@ class Paypal
     private $data;
     private $queryString = '';
     private $token;
-    private $response;
-    private $verificationQuery = 'cmd=_notify-validate';
+    private $response = array();
 
     /**
      * Paypal constructor.
