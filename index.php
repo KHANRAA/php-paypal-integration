@@ -12,6 +12,7 @@ require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/Session.php';
 require_once __DIR__ . '/includes/Security.php';
 require_once __DIR__ . '/includes/Load.php';
+require_once __DIR__ . '/Toolani/Payment/Paypal.php';
 require_once __DIR__ . '/Paypal/Paypal.php';
 
 $load = new \Load\Load();
