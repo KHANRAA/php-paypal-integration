@@ -11,7 +11,7 @@ namespace Load;
 /**
  * Class Load
  */
-class Load extends \Exception
+class Load
 {
     function __construct()
     {}
