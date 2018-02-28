@@ -15,4 +15,5 @@ if (isset($_SESSION['paypal']['token'])) {
     echo "Payment was failed!";
 } else {
     // Invalid request. Redirect the user to the homepage (or anywhere you'd like to).
+    header('Location: .');
 }

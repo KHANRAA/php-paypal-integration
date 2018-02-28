@@ -19,4 +19,5 @@ if (isset($_SESSION['paypal']['token'])) {
     $paypalClient->unsetSessionVars();
 } else {
     // Invalid request. Redirect the user to the homepage (or anywhere you'd like to).
+    header('Location: .');
 }
