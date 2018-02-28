@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `arunnet_paypal`
 --
-CREATE DATABASE IF NOT EXISTS `arunnet_paypal` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `arunnet_paypal`;
+CREATE DATABASE IF NOT EXISTS `paypal_demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `paypal_demo`;
 
 -- --------------------------------------------------------
 
