@@ -62,8 +62,9 @@ class IpnVerifier
      *
      *  Throws an exception if there is an error.
      *
-     *  @param  array   $postData  POST variables as a key/value array
-     *  @return boolean            True if the response came back as "VERIFIED", false if the response came back "INVALID"
+     * @param  array $postData POST variables as a key/value array
+     * @return boolean            True if the response came back as "VERIFIED", false if the response came back "INVALID"
+     * @throws \Exception
      */
     public function verify($postData)
     {
@@ -126,8 +127,9 @@ class IpnVerifier
      *  Note that while this method will fall back to using $_POST if given no
      *  $postData, 'verify' will NOT.
      *
-     *  @param  array   $postData  POST variables as a key/value array, $_POST will be used directly if not provided
-     *  @return boolean            True if the response came back as "VERIFIED", false if the response came back "INVALID"
+     * @param  array $postData POST variables as a key/value array, $_POST will be used directly if not provided
+     * @return boolean            True if the response came back as "VERIFIED", false if the response came back "INVALID"
+     * @throws \Exception
      */
     public function processIpn($postData = null)
     {
