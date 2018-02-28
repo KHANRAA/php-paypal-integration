@@ -25,7 +25,7 @@ class Load
      */
     public function view($page, array $vars = array())
     {
-        if (! empty($vars) && ! isAssoc($vars)) {
+        if (! empty($vars) or ! isAssoc($vars)) {
             throw new \Exception('The second argument expects an array containing name and value pair.');
         }
 
