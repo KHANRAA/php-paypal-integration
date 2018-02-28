@@ -8,7 +8,6 @@
 
 $paypalClient = new \Paypal\Paypal();
 $paypalClient->readIPNResponse();
-$paypalClient->buildVerificationQuery();
 
 try {
     $status = $paypalClient->validatePayment();
